@@ -6,7 +6,8 @@
 <body>
 <script type="text/javascript">
 
-// Number
+// 数据类型判断
+// 	Number
 	// 浮点数的相加相等
 	var nmb_a = 0.15;
 	var nmb_b = 0.25;
@@ -17,8 +18,36 @@
 		console.log("浮点数的相加 "+nmb_a+" + "+ nmb_b + " == "+all+"?", "不相等！");
 	}
 
-	
+	// NaN类型的判断
+	var number_c = NaN;
+	if(!isNaN(NaN)){
+	    console.log("NaN 类型的判断, isNaN有用吗？",isNaN(NaN));
+	}else{
+	    console.log("NaN 类型的判断, isNaN有用吗？",!isNaN(NaN))
+	}
 
+	console.log("NaN == NaN ? ", NaN == NaN);
+	console.log("NaN/2 ? ", NaN/2);
+	console.log("任何数/0，返回都是Inifinity",1000/0);
+
+	// 类型Number转化
+	console.log("Number(\"Hello,world!\")",Number("Hello,world!"));
+    console.log("Number(\"\") ", Number(""));
+    console.log("Number(\"0123\") ", Number("0123"));
+    console.log("true ", true);
+
+    //parseInt 类型判断
+    console.log("parseInt(\"01234blue\")",parseInt("01234blue"));
+    console.log("parseInt(\"\") ",parseInt(""));
+    console.log("parseInt(\"blue\") ",parseInt("blue"));
+    console.log("parseInt(\"1.12\") ",parseInt("1.12"));
+    
+    console.log("parseInt(\"AF\",16)",parseInt("AF",16));
+    console.log("parseInt(\"AF\")",parseInt("AF"))
+
+	// unicodez字符编码占据一个单位字符 
+    var text = "this is a the letter sigma:\u03a3";
+    console.log("'this is a the letter sigma: \u03a3' 的长度：",text.length); //==28
 </script>
 </body>
 </html>
