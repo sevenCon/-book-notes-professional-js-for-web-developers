@@ -105,15 +105,13 @@ parseInt()在转化数字类型的时候，和Number()不同的是，
 
 ##### js 字符串不可改变，只能删除
 > ECMAScript 的字符串不可改变，字符串一旦创建，他们的至就不可改变，要改变只能是新建一个新的字符串，然后销毁原来的字符串。
+
 ```
     var lang = "Java";
         lang = lang + "Script";
-
-
 ```
 
-> 对于以上的操作，计算机首先创建一个容纳10个字符串的变量，然后把Java 和 Script 填充到这个变量，然后销毁原来的Java变量。
-
+对于以上的操作，计算机首先创建一个容纳10个字符串的变量，然后把Java 和 Script 填充到这个变量，然后销毁原来的Java变量。
 
 ##### toString() , 转化为字符串
 将一个变量转化为一个字符串有2中方法，若是该变量我null或者undefined,则会返回原来的类型,null或undefined
@@ -129,7 +127,7 @@ parseInt()在转化数字类型的时候，和Number()不同的是，
     console.log(num.toString(16));//=>"a"
 ```
 
-#### Object 类型
+##### Object 类型
 
 ECMAScript中，定义一个对象，
 ```
@@ -147,14 +145,12 @@ ECMAScript中，定义一个对象，
 - toString(): 返回字符串的表示
 
 
-###3.5 操作符
+### 3.5 操作符
 
-#### 一元操作符
+##### 一元操作符
 ++，-- 等，一元操作，都是发生在赋值运算前。在计算机科学领域，称之为副效应。
 ```
     var age = 30;
     var anotherage = --age + 2;
-
     console.log(age,anotherage);
-
 ```
