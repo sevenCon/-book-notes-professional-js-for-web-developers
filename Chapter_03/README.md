@@ -185,7 +185,7 @@ js 所有的数值都是采用，IEEE754-64 位储存，而位操作符并不直
 
 ##### 布尔操作符
 
-- 逻辑非 | 
+- 逻辑非 ！
 
 ```
     console.log('!""',!"");     // true
@@ -196,7 +196,7 @@ js 所有的数值都是采用，IEEE754-64 位储存，而位操作符并不直
     console.log("!'false'",!'false'); // false
 ```
 
-- 逻辑与
+- 逻辑与 && ，短路操作
     + 如果第一个操作符是对象，则返回第二个操作符
     + 如果两个操作符都是对象，则返回第二个操作符
     + 如果第二个操作符是对象，则只有第一个为true的情况下，才会返回对象
@@ -207,3 +207,81 @@ js 所有的数值都是采用，IEEE754-64 位储存，而位操作符并不直
     var result = (found && someUndefinedVariable); //这里发生错误
     console.log(result); //这里不会执行
 ```
+
+- 逻辑或 || 
+    + 如果两个操作符都是对象，则返回第一个操作符
+    + 如果第一个操作符是对象，则返回第一个操作符
+    + 如果第一个操作符是false，则返回第二个操作符
+    + 如果两个操作符都是NaN，null，undefined，则返回NaN，null,undefined
+如果第一个操作符的运算结果是true，则不会计算第二个值了。
+
+```
+    // 运用
+    var myobject = preferredObject || backObject;
+    
+```
+
+##### 加法操作符
+- + 运算符的运算规则
+    + 如果有一个运算符是 NaN，则结果是NaN
+    +  infinity + infinity = infinity
+    +  -infinity + infinity = NaN
+    +  -infinity + -infinity = -Infinity
+    +  +0 + +0 = +0;
+    +  -0 + -0 = -0;
+    +  -0 + +0 = +0;
+    +  如果至少有一个操作符是字符串
+        *  2个字符串相加，简单的字符串连接
+        *  如果有一个操作符是字符串，则将另一个操作符转化为字符串，再连接字符串
+        
+##### 减法操作符
+- 如果都是数值，这进行数值的比较
+- 如果都是字符串,比较2个字符编码值
+- 如果有一个是数值，则将另一个转化为数值比较
+- 如果是bool,则转化为数值在进行比较
+- 如果一个是对象，则会调用valueOf()，没有则调用toString方法，根据得到的结果再进行比较
+
+```
+    var result1 = "Brick" < "alphabet"; // true;
+    var result2 = "Brick".toLowerCase() < "alphabet".toLowerCase(); // false
+
+
+    var result3 = "23" < "3";  //true, 比较字符串编码大小
+    var result4 = "23" < 3;  //false ，转化为数值进行比较
+
+    var result5 = "a" < 3; //false, a 被转化为 NaN
+    // 任何数和NaN 比较都是false
+    var result6 = NaN < 3; //false
+    var result7 = NaN >=3; //false
+
+```
+
+##### 相等操作符
+- 相等 和 不相等
+    + ==  和 != ，在进行判断的时候，会进行强制的类型转化，遵循以下规则：
+        * 如果有一个参数是布尔值，则在比较的时候，先将其转化为数值---false转化为0，而true转化为1
+        * 如果一个操作值得字符串，一个是数值，则在比较之前，将字符串转化位数值
+        * 如果其中一个是对象，则调用valueOf()方法，转化为基本对象后，再根据以上规则进行判断。
+        
+        在进行判断的时候，要遵循以下规则
+        1. null 和 undefined 是相等的
+        2. 在比较之前，不能将 null 和 undefined转化为其他任何值。 
+        3. 在比较NaN，之前，遵循 NaN != NaN 的规则。所以任何数和NaN判断，都是false
+        4. 如果2个操作数都是对象，则是比较他们是不是同一个对象。
+        
+        以下是一些特殊的值
+        ```
+            console.log("null == undefined ", null == undefined); //true
+            console.log('"NaN" == NaN ', "NaN" == NaN); //false
+            console.log('5 == NaN ', 5 == NaN); //false
+            console.log('NaN == NaN ', NaN == NaN); // false
+            console.log('NaN != NaN ', NaN != NaN); // true
+            console.log('false==0 ', false == 0); // true
+            console.log('true == 1 ', true == 1);    //true
+            console.log('true == 2 ', true == 2);    //false
+            console.log('undefined == 0', undefined == 0); //false
+            console.log("null == 0", null == 0); //false
+            console.log("'5' == 5 ", '5' == 5); // true
+        ```
+- 全等 和 不全等
+    全等和不全等，在进行比较的时候，不会进行类型的强制转化
