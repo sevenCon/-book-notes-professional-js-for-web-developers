@@ -290,3 +290,95 @@ js 所有的数值都是采用，IEEE754-64 位储存，而位操作符并不直
         console.log("a === '1'",a === '1'); //false
     ```
     
+##### 逗号运算符
+逗号运算符可以在一条语句中进行多条操作，总是返回最后一个逗号后面的返回值
+```
+    var num1 = 1, num2 = 2, num3 = 3;
+    var num = (5,1,3,4,5,0);// 最后num = 0;
+```
+
+
+### 3.6语句
+
+##### for-in循环
+for-in循环，普遍是用来遍历对象属性，但具体的遍历顺序取决于浏览器的实现，在某种程度上可以用来遍历数组，但是for-in遍历伪数组对象，会遍历length，遍历Array则不会，还有顺序不确定，下标获取的数字符串等问题。
+
+ES5之前，如果遍历的属性是null或者undefined，则会抛错，ES5则更不会抛错，但是，为保证最大程度的兼容性，在用for-in遍历之前，还是建议用判断语句检查属性是否undefined或null。
+
+##### label标签
+在开始的代码中先定义一个标签，以便将来使用。主体配合for循环的break或者continue。
+```
+// label 语句，配合continue或者break;
+start:for( var i = 0; i < 5; i++){
+    wrap:for( var j = 0; j < 5; j++){
+        inner:for( var k = 0; k < 5; k++){
+            if(k == 2){
+                break wrap;
+            }
+            console.log(k);    //@1
+            // 内层遇到k>=2,的都会跳转，因为break到wrap后面，所以j,k都不会++,而start会如期的打印,只有@1，和@2会运行。
+        }
+        console.log(j);
+    }
+    console.log(i);//@2
+}
+
+```
+note： 若是continue,则是会跳到wrap的那一层循环，执行j++，然后在执行j<5的判断，而inner那一层的循环是完全的不执行。
+
+##### with语句
+with的语句的作用，是将这部分语句块的this绑定到一个给定的对象上，在这个语句块查找变量的时候，就可以不指定this.XXX的方法去调用this上的属性或方法，但是与之带来的副作用是，在对每一个变量进行操作的时候，计算机都会去查找这个变量是否在给定的this上，大量的运用with，会导致程序的性能降低。
+```
+    with(location){
+        href="github.com"; // location.href="github.com"
+    }
+```
+
+##### switch语句
+switch语句的用法，每个case 的判断是全等操作符，所以不会发生类型转化，而在每个case之后的运算。
+比如：字符串'10' 不等于 10;
+```
+    var num = 25;
+    switch(true){
+        case num < 0:
+            console.log("less than 0");
+            break;
+        case num > 0 && num < 10:
+            console.log("between 0 and 10");
+            break;
+        case num > 10 && num < 20:
+            console.log("between 10 and 20;");
+            break;
+        default:
+            console.log("more than 20.");
+            break;
+    }
+```
+
+
+### 3.7 函数
+在ES5的严格模式下，函数及其参数不能命名为eval或arguments，同时同名函数回抛错。
+
+###### arguments数组获取参数值
+在ES中，在函数定义的时候并不强制性将所有的参数显示的定义出来，而可以通过一个伪数组元素，arguments，进行获取，参数个数，及值。
+- ES5 的严格模式下，对arguments的重新赋值会无效，并且抛错
+- 在既定的参数下，比如sayHi("hello","hi")情况下，对arguments[2] =1，的赋值会导致函数参数定义的变量也被重写，比如：function(num1, num2)这个重写是单向的，也就说 num2 这时也为1，但是对num2=1,赋值不会影响arguments.
+
+```
+    function sayHi(){
+        console.log(arguments.length,arguments[0]);
+    }   
+    sayHi("hello world!");
+```
+
+##### js 函数没有重载
+js没有既定的函数重载，重复的定义函数，只会覆盖已有定义的函数。
+
+
+
+### 第三章总结
+- ECMAScript的基本类型只有Undefined,Null,Boolean,String,Number.
+- ES中的复杂类型只有Object，是所有对象,Date,Array,Function的基础
+- 函数的返回值可以在任何地方指定，也可不指定，默认的返回时undefined
+- ES没有函数签名的概念，也没有函数重载，参数可以指定多个，而不指定函数参数
+- ES5 的严格模式，指定了诸多限制。

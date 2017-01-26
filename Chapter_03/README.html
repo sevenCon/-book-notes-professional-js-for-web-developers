@@ -1,0 +1,1377 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
+  width: 45em;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 30px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headeranchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .headeranchor-link:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .headeranchor,
+.markdown-body h2 .headeranchor,
+.markdown-body h3 .headeranchor,
+.markdown-body h4 .headeranchor,
+.markdown-body h5 .headeranchor,
+.markdown-body h6 .headeranchor {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .headeranchor-link,
+.markdown-body h2:hover .headeranchor-link,
+.markdown-body h3:hover .headeranchor-link,
+.markdown-body h4:hover .headeranchor-link,
+.markdown-body h5:hover .headeranchor-link,
+.markdown-body h6:hover .headeranchor-link {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .headeranchor-link .headeranchor,
+.markdown-body h2:hover .headeranchor-link .headeranchor,
+.markdown-body h3:hover .headeranchor-link .headeranchor,
+.markdown-body h4:hover .headeranchor-link .headeranchor,
+.markdown-body h5:hover .headeranchor-link .headeranchor,
+.markdown-body h6:hover .headeranchor-link .headeranchor {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* Multimarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><title>README</title></head><body><article class="markdown-body"><h1 id="chapter-03"><a name="user-content-chapter-03" href="#chapter-03" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Chapter 03</h1>
+<h3 id="34"><a name="user-content-34" href="#34" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.4 数据类型</h3>
+<h4 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>浮点数的相加相等问题</h4>
+<p>js 中浮点数的相加 遵循 IEEE754 的标准的通病，es 并非就此一家，其他使用相同数值的语言也都有。<br />
+比如： 0.15+0.25 = 0.4  这个的相加就无此问题。<br />
+<pre><code>&lt;!-- 浮点数的相加相等 --&gt;
+    var nmb_a = 0.15;
+    var nmb_b = 0.25;
+    var all = 0.4;
+    if(nmb_a + nmb_b == all){
+        console.log(&quot;浮点数的相加 &quot;+nmb_a+&quot; + &quot;+ nmb_b + &quot; == &quot;+all+&quot;?&quot;, &quot;相等！&quot;);
+    }else{
+        console.log(&quot;浮点数的相加 &quot;+nmb_a+&quot; + &quot;+ nmb_b + &quot; == &quot;+all+&quot;?&quot;, &quot;不相等！&quot;);
+    }
+    &lt;!-- 就是这么玄乎 --&gt;
+    // ==&gt;  0.1+0.2 = 0.30000000000000004 
+    // ==&gt;  0.15+0.25 = 0.4   
+</code></pre></p>
+<h4 id="nan"><a name="user-content-nan" href="#nan" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>NaN类型的判断</h4>
+<pre><code>isNaN，对于Object的对象而言，则会先调用valueOf(),判断是否可以转化为数字，如果是NaN，如果不能则再根据valueOf()的数，调用toString(),再测试返回值。这个过程也ECMASCRIPT操作符操作的过程。
+
+var number_c = NaN;
+if(isNaN(NaN)){
+    console.log(&quot;NaN 类型的判断, isNaN有用吗？&quot;,isNaN(NaN));
+}else{
+    console.log(&quot;NaN 类型的判断, isNaN有用吗？&quot;,isNaN(NaN))
+}   
+
+    console.log(&quot;NaN == NaN ? &quot;, NaN == NaN);
+    console.log(&quot;NaN/2 ? &quot;, NaN/2);
+    console.log(&quot;任何数/0，返回都是NaN&quot;,1/0);
+
+</code></pre>
+
+<h4 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>数值转化</h4>
+<ul>
+<li>Number()</li>
+<li>parseInt() </li>
+<li>parseFloat()</li>
+</ul>
+<h5 id="number"><a name="user-content-number" href="#number" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Number() 的转化规则</h5>
+<ul>
+<li>如果是boolean格式的规则，true转为1，false转为0</li>
+<li>如果是数字，则是简单的传入和返回</li>
+<li>null，转为0</li>
+<li>undefined转为NaN</li>
+<li>如果是字符串，则遵循以下规则，、<ul>
+<li>如果字符串中包含数字，则将其转化为十进制的数值，“1“ =》 1，“0123” =》 123，默认去掉无效的0</li>
+<li>如果包含浮点数值，则包含，忽略前导的0</li>
+<li>16进制的数值会转为10进制</li>
+<li>字符串为空，转为0</li>
+<li>若是包含以上以外的字符串，转化为NaN</li>
+</ul>
+</li>
+<li>若是参数为Object类型，则调用valueOf()方法，依照前面的规则转化返回的值，如果转化的对象是NaN,则调用toString(),再依照前面的规则，进行转化。<br />
+<pre><code>    //类型的转化
+    console.log(&quot;Number(&quot;Hello,world!&quot;) &quot;,Number(&quot;Hello,world!&quot;));
+    console.log(&quot;Number(&quot;&quot;) &quot;, Number(&quot;&quot;));
+    console.log(&quot;Number(&quot;0123&quot;) &quot;, Number(&quot;0123&quot;));
+    console.log(&quot;true &quot;, true);
+</code></pre></li>
+</ul>
+<blockquote>
+<p>note: 一元+ 操作符，和Number()的转化相同</p>
+</blockquote>
+<h5 id="parseint"><a name="user-content-parseint" href="#parseint" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>parseInt()转化数字类型</h5>
+<p>parseInt()在转化数字类型的时候，和Number()不同的是，<br />
+- 会忽略浮点数后的小数<br />
+- 在转化时，会忽略前面的空格字符串，直遇到的第一个有效字符串&rdquo;+&rdquo;,&rdquo;-&ldquo;或数字，若是后面没有，则会返回NaN，而与Number(&ldquo;&rdquo;)不同的是，Number(&ldquo;&rdquo;)返回的是&rdquo;0&rdquo;;</p>
+<pre><code>    // parseInt数字类型转化
+    console.log(&quot;parseInt(\&quot;01234blue\&quot;)&quot;,parseInt(&quot;01234blue&quot;));
+    console.log(&quot;parseInt(\&quot;\&quot;) &quot;,parseInt(&quot;&quot;));
+    console.log(&quot;parseInt(\&quot;blue\&quot;) &quot;,parseInt(&quot;blue&quot;);
+    console.log(&quot;parseInt(\&quot;1.12\&quot;) &quot;,parseInt(&quot;1.12&quot;));
+</code></pre>
+
+<blockquote>
+<p>note:在ECMAScript 3 和ECMAScript 5 处理parseInt(&ldquo;070&rdquo;),ES 3 认为应该是8进制，ES 5认为是10进制 <br />
+<pre><code>    console.log(&quot;070&quot;);
+</code></pre><br />
+所以，为了消除以上的困惑，parseInt() ,具有第二个可选的参数，同时是16进制数，可以不写前导“0x” 字符串<br />
+<pre><code>    console.log(&quot;parseInt(\&quot;oxAF\&quot;,16)&quot;,parseInt(&quot;0xAF&quot;,16));
+    console.log(&quot;parseInt(\&quot;oxAF\&quot;)&quot;,parseInt(&quot;0xAF&quot;))
+</code></pre></p>
+</blockquote>
+<h4 id="string"><a name="user-content-string" href="#string" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>String类型的字符字面量</h4>
+<ul>
+<li>\n 换行</li>
+<li>\t 制表</li>
+<li>\b 空格</li>
+<li>\r 回车</li>
+<li>\f 换页</li>
+<li>\ 斜杠</li>
+<li>' 单引号</li>
+<li>" 双引号</li>
+<li>\nn 以16进制nn表示一个字符 n: [0-F] , 例如：  \x41 =&gt;&rdquo;A&rdquo; </li>
+<li>\unnnn unicode 字符</li>
+</ul>
+<p>以上所有的字符串可以出现在字符串的任何位置，被当作一个单位字符别解析<br />
+比如：<br />
+<pre><code>    var text = &quot;this is a the letter sigma： \u03a3&quot;;
+    console.log(text.length); //==28
+</code></pre></p>
+<h5 id="js"><a name="user-content-js" href="#js" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>js 字符串不可改变，只能删除</h5>
+<blockquote>
+<p>ECMAScript 的字符串不可改变，字符串一旦创建，他们的至就不可改变，要改变只能是新建一个新的字符串，然后销毁原来的字符串。</p>
+</blockquote>
+<pre><code>    var lang = &quot;Java&quot;;
+        lang = lang + &quot;Script&quot;;
+</code></pre>
+
+<p>对于以上的操作，计算机首先创建一个容纳10个字符串的变量，然后把Java 和 Script 填充到这个变量，然后销毁原来的Java变量。</p>
+<h5 id="tostring"><a name="user-content-tostring" href="#tostring" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>toString() , 转化为字符串</h5>
+<p>将一个变量转化为一个字符串有2中方法，若是该变量我null或者undefined,则会返回原来的类型,null或undefined</p>
+<ul>
+<li>利用加晕算法，+ &ldquo;&rdquo; ，进行转化</li>
+<li>toString(),接受一个参数，判断字符串的进制数[基数]<br />
+<pre><code>    var num = 10;
+    console.log(num.toString());//=&gt;&quot;10&quot;
+    console.log(num.toString(2));//=&gt;&quot;1010&quot;
+    console.log( num.toString(8));//=&gt;&quot;12&quot;
+    console.log(num.toString(10)); //=&gt;&quot;10&quot;
+    console.log(num.toString(16));//=&gt;&quot;a&quot;
+</code></pre></li>
+</ul>
+<h5 id="object"><a name="user-content-object" href="#object" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Object 类型</h5>
+<p>ECMAScript中，定义一个对象，<br />
+<pre><code>    var a = new Object();
+    // 下面也行，但是并不推荐
+    var a = new Object;
+</code></pre><br />
+每个Object的实例都有以下的属性<br />
+- Contructor :用与保存创建当前的实例的函数，比如：以上的a的实力，Contructor就是Object(),这个函数，而不是他的原型对象<br />
+- hasOwnProperty(propertyName), 用于判断一个属性是否是当前对象的实例中，不是原型的属性<br />
+- isPrototypeOf(objectName) 判断一个对象是否是另一个对象的原型<br />
+- propertyIsEnumerable(propertyName): 用于检查给定的属性是否可以用for-in循环得到<br />
+- toLocalString(): 返回对象的字符串表示，该字符串与执行环境的地区对应<br />
+- valueOf()： 返回对象的字符串，布尔，数值表示，通常与toString()方法的返回值。<br />
+- toString(): 返回字符串的表示</p>
+<h3 id="35"><a name="user-content-35" href="#35" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.5 操作符</h3>
+<h5 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>一元操作符</h5>
+<p>++，&ndash; 等，一元操作，都是发生在赋值运算前。在计算机科学领域，称之为副效应。<br />
+<pre><code>    var age = 30;
+    var anotherage = --age + 2;
+    console.log(age,anotherage);
+</code></pre></p>
+<h5 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>位操作符</h5>
+<p>js 所有的数值都是采用，IEEE754-64 位储存，而位操作符并不直接操作64位的数据，而是将64位的值转化为32位的整数，然后直接操作，对于开发的人员，64位的数据是透明的。<br />
+负数的储存，是用补码储存的，补码的求法，是先求反码，再用反码加1的方式。</p>
+<ul>
+<li>&amp; ：按位与 操作符，所有的数据，左操作符和右操作的值都为1的情况下，结果为1.</li>
+<li>~ : 按位非 运算符，返回的结果就是，操作值得反码。</li>
+</ul>
+<pre><code>    var num1 = 25;    // 00000000000000000000000000011001
+    var num2 = ~num1; // 11111111111111111111111111100110
+    console.log(num2);
+</code></pre>
+
+<ul>
+<li>| ：按位或 操作符，左操作符，右操作符，2者其中一个为1的情况，结果都为1.</li>
+<li>^ : 按位异或 操作符， 左操作符和右操作符，相同的则结果为0，不同的则结果为1.</li>
+<li>左移 &lt;&lt;  : 左移运算符<br />
+<pre><code>    var oldvalue = 2;  //二进制 10
+    var newvalue = oldvalue &lt;&lt; 5; //二进制 1000000 ，十进制的64
+</code></pre></li>
+<li>
+<blockquote>
+<blockquote>
+<p>:有符号位的右移, 操作符向右移动，空位用符号为补全。</p>
+</blockquote>
+</blockquote>
+</li>
+<li>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>: 无符号位的右移，对于正数，有符号位右移和无符号位右移，结果相同，但是负数就不同，负数是用补码的形式储存的，负数的无符号位的右移会导致结果很大。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<pre><code>    var oldvalue = -64;            //二进制的 11111111111111111111111111000000 
+    var newvalue = oldvalue &gt;&gt;&gt; 5; //10进制的134217726
+</code></pre>
+
+<h5 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>布尔操作符</h5>
+<ul>
+<li>逻辑非 ！</li>
+</ul>
+<pre><code>    console.log('!&quot;&quot;',!&quot;&quot;);     // true
+    console.log('!NaN',!NaN);   // true
+    console.log('!undefined',!undefined);   //true
+    console.log('!1234',!1234); // false
+    console.log('!0',!0);       //false
+    console.log(&quot;!'false'&quot;,!'false'); // false
+</code></pre>
+
+<ul>
+<li>逻辑与 &amp;&amp; ，短路操作<ul>
+<li>如果第一个操作符是对象，则返回第二个操作符</li>
+<li>如果两个操作符都是对象，则返回第二个操作符</li>
+<li>如果第二个操作符是对象，则只有第一个为true的情况下，才会返回对象</li>
+<li>如果有一个操作符是null,NaN,undefined,则会返回他们本身</li>
+</ul>
+</li>
+</ul>
+<pre><code>    var found = false;
+    var result = (found &amp;&amp; someUndefinedVariable); //这里发生错误
+    console.log(result); //这里不会执行
+</code></pre>
+
+<ul>
+<li>逻辑或 || <ul>
+<li>如果两个操作符都是对象，则返回第一个操作符</li>
+<li>如果第一个操作符是对象，则返回第一个操作符</li>
+<li>如果第一个操作符是false，则返回第二个操作符</li>
+<li>如果两个操作符都是NaN，null，undefined，则返回NaN，null,undefined<br />
+如果第一个操作符的运算结果是true，则不会计算第二个值了。</li>
+</ul>
+</li>
+</ul>
+<pre><code>    // 运用
+    var myobject = preferredObject || backObject;
+
+</code></pre>
+
+<h5 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>加法操作符</h5>
+<ul>
+<li>
+<ul>
+<li>运算符的运算规则</li>
+<li>如果有一个运算符是 NaN，则结果是NaN</li>
+<li>infinity + infinity = infinity</li>
+<li>-infinity + infinity = NaN</li>
+<li>-infinity + -infinity = -Infinity</li>
+<li>+0 + +0 = +0;</li>
+<li>-0 + -0 = -0;</li>
+<li>-0 + +0 = +0;</li>
+<li>如果至少有一个操作符是字符串<ul>
+<li>2个字符串相加，简单的字符串连接</li>
+<li>如果有一个操作符是字符串，则将另一个操作符转化为字符串，再连接字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>减法操作符</h5>
+<ul>
+<li>如果都是数值，这进行数值的比较</li>
+<li>如果都是字符串,比较2个字符编码值</li>
+<li>如果有一个是数值，则将另一个转化为数值比较</li>
+<li>如果是bool,则转化为数值在进行比较</li>
+<li>如果一个是对象，则会调用valueOf()，没有则调用toString方法，根据得到的结果再进行比较</li>
+</ul>
+<pre><code>    var result1 = &quot;Brick&quot; &lt; &quot;alphabet&quot;; // true;
+    var result2 = &quot;Brick&quot;.toLowerCase() &lt; &quot;alphabet&quot;.toLowerCase(); // false
+
+
+    var result3 = &quot;23&quot; &lt; &quot;3&quot;;  //true, 比较字符串编码大小
+    var result4 = &quot;23&quot; &lt; 3;  //false ，转化为数值进行比较
+
+    var result5 = &quot;a&quot; &lt; 3; //false, a 被转化为 NaN
+    // 任何数和NaN 比较都是false
+    var result6 = NaN &lt; 3; //false
+    var result7 = NaN &gt;=3; //false
+
+</code></pre>
+
+<h5 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>相等操作符</h5>
+<ul>
+<li>相等 和 不相等<ul>
+<li>
+<p>==  和 != ，在进行判断的时候，会进行强制的类型转化，遵循以下规则：</p>
+<ul>
+<li>如果有一个参数是布尔值，则在比较的时候，先将其转化为数值&mdash;false转化为0，而true转化为1</li>
+<li>如果一个操作值得字符串，一个是数值，则在比较之前，将字符串转化位数值</li>
+<li>如果其中一个是对象，则调用valueOf()方法，转化为基本对象后，再根据以上规则进行判断。</li>
+</ul>
+<p>在进行判断的时候，要遵循以下规则<br />
+1. null 和 undefined 是相等的<br />
+2. 在比较之前，不能将 null 和 undefined转化为其他任何值。 <br />
+3. 在比较NaN，之前，遵循 NaN != NaN 的规则。所以任何数和NaN判断，都是false<br />
+4. 如果2个操作数都是对象，则是比较他们是不是同一个对象。</p>
+<p>以下是一些特殊的值<br />
+<pre><code>    console.log(&quot;null == undefined &quot;, null == undefined); //true
+    console.log('&quot;NaN&quot; == NaN ', &quot;NaN&quot; == NaN); //false
+    console.log('5 == NaN ', 5 == NaN); //false
+    console.log('NaN == NaN ', NaN == NaN); // false
+    console.log('NaN != NaN ', NaN != NaN); // true
+    console.log('false==0 ', false == 0); // true
+    console.log('true == 1 ', true == 1);    //true
+    console.log('true == 2 ', true == 2);    //false
+    console.log('undefined == 0', undefined == 0); //false
+    console.log(&quot;null == 0&quot;, null == 0); //false
+    console.log(&quot;'5' == 5 &quot;, '5' == 5); // true
+</code></pre><br />
+- 全等 和 不全等<br />
+    全等和不全等，在进行比较的时候，不会进行类型的强制转化，比如，<br />
+    <pre><code>    var a = 1;
+    console.log(&quot;a === '1'&quot;,a === '1'); //false
+</code></pre></p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>逗号运算符</h5>
+<p>逗号运算符可以在一条语句中进行多条操作，总是返回最后一个逗号后面的返回值<br />
+<pre><code>    var num1 = 1, num2 = 2, num3 = 3;
+    var num = (5,1,3,4,5,0);// 最后num = 0;
+</code></pre></p>
+<h3 id="36"><a name="user-content-36" href="#36" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.6语句</h3>
+<h5 id="for-in"><a name="user-content-for-in" href="#for-in" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>for-in循环</h5>
+<p>for-in循环，普遍是用来遍历对象属性，但具体的遍历顺序取决于浏览器的实现，在某种程度上可以用来遍历数组，但是for-in遍历伪数组对象，会遍历length，遍历Array则不会，还有顺序不确定，下标获取的数字符串等问题。</p>
+<p>ES5之前，如果遍历的属性是null或者undefined，则会抛错，ES5则更不会抛错，但是，为保证最大程度的兼容性，在用for-in遍历之前，还是建议用判断语句检查属性是否undefined或null。</p>
+<h5 id="label"><a name="user-content-label" href="#label" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>label标签</h5>
+<p>在开始的代码中先定义一个标签，以便将来使用。主体配合for循环的break或者continue。<br />
+<pre><code>// label 语句，配合continue或者break;
+start:for( var i = 0; i &lt; 5; i++){
+    wrap:for( var j = 0; j &lt; 5; j++){
+        inner:for( var k = 0; k &lt; 5; k++){
+            if(k == 2){
+                break wrap;
+            }
+            console.log(k);    //@1
+            // 内层遇到k&gt;=2,的都会跳转，因为break到wrap后面，所以j,k都不会++,而start会如期的打印,只有@1，和@2会运行。
+        }
+        console.log(j);
+    }
+    console.log(i);//@2
+}
+
+</code></pre><br />
+note： 若是continue,则是会跳到wrap的那一层循环，执行j++，然后在执行j&lt;5的判断，而inner那一层的循环是完全的不执行。</p>
+<h5 id="with"><a name="user-content-with" href="#with" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>with语句</h5>
+<p>with的语句的作用，是将这部分语句块的this绑定到一个给定的对象上，在这个语句块查找变量的时候，就可以不指定this.XXX的方法去调用this上的属性或方法，但是与之带来的副作用是，在对每一个变量进行操作的时候，计算机都会去查找这个变量是否在给定的this上，大量的运用with，会导致程序的性能降低。<br />
+<pre><code>    with(location){
+        href=&quot;github.com&quot;; // location.href=&quot;github.com&quot;
+    }
+</code></pre></p>
+<h5 id="switch"><a name="user-content-switch" href="#switch" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>switch语句</h5>
+<p>switch语句的用法，每个case 的判断是全等操作符，所以不会发生类型转化，而在每个case之后的运算。<br />
+比如：字符串&lsquo;10&rsquo; 不等于 10;<br />
+<pre><code>    var num = 25;
+    switch(true){
+        case num &lt; 0:
+            console.log(&quot;less than 0&quot;);
+            break;
+        case num &gt; 0 &amp;&amp; num &lt; 10:
+            console.log(&quot;between 0 and 10&quot;);
+            break;
+        case num &gt; 10 &amp;&amp; num &lt; 20:
+            console.log(&quot;between 10 and 20;&quot;);
+            break;
+        default:
+            console.log(&quot;more than 20.&quot;);
+            break;
+    }
+</code></pre></p>
+<h3 id="37"><a name="user-content-37" href="#37" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>3.7 函数</h3>
+<p>在ES5的严格模式下，函数及其参数不能命名为eval或arguments</p></article></body></html>

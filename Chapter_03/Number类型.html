@@ -69,6 +69,33 @@
 
     // || 运算符的常用技巧
     var myobject = false || {};
+
+    //
+    var num = (5,1,3,4,5,0);// 最后num = 0;
+    console.log("num = (5,1,2,3,0);的赋值结果 ",num);
+
+    // label 语句，配合continue或者break;
+    start:for( var i = 0; i < 5; i++){
+    	wrap:for( var j = 0; j < 5; j++){
+	    	inner:for( var k = 0; k < 5; k++){
+		    	if(k == 2){
+		    		continue wrap;
+		    	}
+		    	console.log(k);   
+		    	// 内层遇到k>=2,的都会跳转，因为break,j++,k++不会执行，所以start 都会如期的打印
+		    }
+		    console.log(j);
+	    }
+    	console.log(i);
+    }
+
+    // arguments
+    function sayHi(){
+        console.log("sayHi(\"hello world!\") 参数的长度 ",arguments.length,arguments[0]);
+    }
+    sayHi("hello world!");
+
+    
 </script>
 </body>
 </html>
