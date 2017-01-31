@@ -4,6 +4,61 @@
 	<title>Chapter_05</title>
 </head>
 <body>
+<script type="text/javascript">
+// Charpter_05 5.2.2 类型转化 
+   var person1 = {
+        toString:function(){
+            return "Nikolaos"
+        },
+        toLocaleString:function(){
+            return "Nikolaos"
+        }
+    }
+    var person2 = {
+        toLocaleString:function(){
+            return "Grigories"
+        },
+        toString:function(){
+            return "Grep"
+        }
+    }
 
+    var person = [person1,person2];
+    console.log(person);
+    console.log(person.toString());
+    console.log(person.toLocaleString());
+
+    // #5.2.8
+    var arr = [1,0];
+    var if_true = arr.some(function(item){
+        return item>0;
+    });
+    console.log("if_true",if_true);// true; 有一个元素大于0；
+
+    var values = [1,2,3,4];
+    var sum = values.reduce(function(pre,next,index,arr){
+        return pre+next;
+    },0);
+
+    console.log("1+2+3+4,reduce迭代",sum);//10
+
+    // new Date(timestamp) demo
+    console.log("new Date(timestamp) demo ",new Date(1485705600000));
+
+    // Date.parse demo
+    console.log("Date.parse demo ",Date.parse("Jan 30,2017"));
+    console.log(Date.parse("1/30/2017"));
+    console.log(Date.parse("Tue May 25 2017 00:00:00 GMT-0700"));
+    console.log(Date.parse("2005-04-04T00:00:00")) //ISO 8601拓展格式，兼容ES5 才可以
+
+    //Date.UTC() demo
+    console.log("Date.UTC() demo ",Date.UTC(2017,01,23,13,44,44));
+
+    // Date 的返回值
+    console.log("Date toString 的返回值 ", new Date().toString());
+    console.log("Date toLocaleString() 的返回值 ",new Date().toLocaleString());
+    console.log("Date valueOf 返回值 ", new Date().valueOf());
+
+</script>
 </body>
 </html>
