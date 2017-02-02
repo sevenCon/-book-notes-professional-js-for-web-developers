@@ -138,3 +138,17 @@ Date 对象的toString(),toLocaleString(),valueOf() 方法的返回值，
 - valueOf() :返回的是时间戳
 - toString(): 返回的是国际通用格式的时间字符串
 - toLocaleString(): 返回的本地格式的时间字符串
+
+##### 5.4.1
+ES3的正则表达式的字面量，是公用一个实例的，所以在循环匹配的时候，会出现lastIndex没有变化的问题。
+
+ 实例属性
+ - global
+ - ignorecase
+ - lastIndex
+ - mutltiline
+ - source
+
+##### 5.4.2 实例方法
+exec(): 专为捕获组为实现的方法，有index，input，match数组
+
