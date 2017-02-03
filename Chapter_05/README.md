@@ -140,15 +140,190 @@ Date 对象的toString(),toLocaleString(),valueOf() 方法的返回值，
 - toLocaleString(): 返回的本地格式的时间字符串
 
 ##### 5.4.1
-ES3的正则表达式的字面量，是公用一个实例的，所以在循环匹配的时候，会出现lastIndex没有变化的问题。
-
+ES3的正则表达式的字面量，是公用一个实例的，所以在循环匹配的时候，会出现lastIndex没有变化的问题。即同一个匹配的字符串，多次用正则字面量匹配会继续匹配后面的部分。
  实例属性
- - global
- - ignorecase
- - lastIndex
- - mutltiline
- - source
+ - global  全局匹配
+ - ignorecase 忽略大小写
+ - lastIndex 上次匹配的地方，exec常用
+ - mutltiline   多行匹配
+ - source  正则表达式的字面量表达式，不是对象字符串
 
 ##### 5.4.2 实例方法
-exec(): 专为捕获组为实现的方法，有index，input，match数组
+exec(): 专为捕获组为实现的方法，有index，input，match数组，一个正则对象多次匹配，lastIndex会变化，而在IE浏览器下面，实现的lastIndex存在偏差，在非全局情况下，lastIndex也会变化。
+test()：如果只是匹配字符串是否符合正则，而不用获取匹配的部分的常用方法。
+```
+    var text = "000-00-0000";
+    var partten = /\d{3}-\d{2}-\d{4};
+    if(partern.test(text)){
+        console.log("/\d{3}-\d{2}-\d{4}"+".test "'000-00-0000'",tre)
+    }
+    
+```
 
+##### 5.4.3 正则表达式的构造函数属性
+正则表达式有以下6个属性，其中有长属性，段属性的表示方式
+input: $_ ,  最近一次要匹配的字符串
+lastMatch: $&, 最近一个的匹配项
+lastParen: $+, 最近一次匹配的捕获组，
+leftontext: $`,  input字符串中lastMatch匹配的文本。
+multiline:  $*, 布尔值，表示是否所有表达式都使用多行模式。
+rightContext： $', input字符串中lastMatch未匹配的文本。
+
+此外，构造函数的属性还有9个用于储存捕获组的属性，分别是$1,$2,$3,..$9
+
+
+##### 5.4.4 模式的局限性
+尽管js的正则还是比较完备的，但是缺少perl语言的高级特性，下面是一些不具备的特性
+- 条件匹配
+- 捕获的命名分组
+- 向后查找
+- 交集并集
+- 原子组
+- 正则注释
+- s （single 单行匹配） 和x（无间隔匹配） 匹配模式
+- unicode支持
+
+### 5.5 Function类型
+
+##### 5.5.4 caller 属性
+
+caller是构造函数的一个属性，储存着调用这个函数的函数引用，若是全局下调用， 则为null，
+```
+    function inner(){
+        console.log("i am called ，inner",inner.caller);
+        console.log(inner.caller);
+        console.log(auguments.callee.caller);
+    }
+    function outer(){
+        console.log("outer,i call inner");
+        inner();
+    }
+    outer();
+```
+
+严格模式下，arguments.callee 调用会抛错，同时es5中也定义了 arguments.caller ，但是，严格模式中会抛错，防止第三方代码窥视其他代码。同时，严格模式下，函数的caller赋值，也会抛错。
+
+
+
+### 基本包装类型
+基本类型的对象有String，Number，Boolean，三种
+在定义基本类型的时候，基本类型的变量可以访问方法和属性，
+```
+    var str = "123";
+    str.substring(1);
+```
+理由是在后台定义基本类型的时候已经为我们新建了一个对象，这个新建的实例，可以访问其原型链的所有的属性和方法。在定义变量和调用过程中可以被定义为
+- 定义变量，创建一个对象实例
+- 调用指定方法
+- 销毁对象
+
+而引用类型和基本类型的一个最主要的区别是变量的生存周期，基本类型的生存期只在指定代码的一瞬间，（如果没有其他引用这个变量的话），而引用类型的变量，则会在退出这个函数作用域都存在。
+
+```
+    var value = "25";
+    var number = Number(value);
+    console.log(typeof number) ;// number
+
+    var obj = new Number(value);
+    console.log(typeof obj);//obj
+
+```
+new 定义的对象和 普通的函数调用方式的定义的，返回的类型是不一样的。
+
+
+
+##### 5.6.1
+
+```
+    var falseObject = new Boolean(false);
+    var result = falseObject && true;
+    console.log(result);// true;
+
+    var falseValue = false;
+    result = falseValue && true;
+    console.log(result); //false
+```
+
+虽说Boolean 对valueOf,toString() 等方法，都重写了，但是在检查和这个对象是否为true，不是对其valueOf(),toString()进行求值，对象永远为true
+
+> 此外基本类型和引用类型，还有2个区别，对typeof 进行求值得时候，基本类型会返回boolean，而引用类型会返回object，function，还有instanceOf ，基本类型会返回false，引用类型返回true
+
+
+##### 5.6.2   Number
+
+同理，Number包装对象，也重写了toLocaleStrign，valueOf()，toString(),此外还有，一些数字格式化的方法，比如
+toFixed(): 用来格式小数点后几位的字符串表示
+
+```
+    var value = 1;
+    console.log(value.toFixed(2));//'1.00'
+```
+toString(): 传入基数的参数，用来表示几进制的数据
+
+> note: ie9以前版本的浏览器的toFixed，不能有效的四舍五入，在{(-0.94,-0.5],[0.5,0.94)},这个范围的值。
+
+toExponential(): 以科学计数法来表示数，传入一个参数，指定输出结果的小数位数
+toProcision(): 根据数值，去自动判断，用toFixed还是用toExponential()，来格式化数字。同样传入一个参数，指定小数位数。
+
+##### 5.6.3 String
+在字符串，计算length的时候，双字节字符算为一个字符长度
+1.字符方法
+- charAt():  访问指定字符
+- charCodeAt: 访问字符码
+
+2. slice ，substr，substring 参数传递负值的情况
+    substring 的第一个参数传入负值，回默认从0开始取，slice，substr会根据字符串长度变化而定，
+    而第二个参数，传入负值，slice会把负值变化为该字符串的长度，substring会变为0，substr也会把字符串变化为0。
+3. indexOf , lastIndexOf : 插找字符串
+4. trim(): ES5新增，删除前置和后置的空格，返回结果。 IE9+
+5. toLowerCase，toUpperCase（）:字符串转大小写
+6. match() ： 返回一个数组，第一个是匹配到的字符串，之后是捕获到的分组，
+7. search： 若查找到，返回一个索引，否则返回-1，
+8. replace(): replace 若是第二个参数是字符串的话，可以用
+- $$ :  $
+- $& :  匹配整个模式的字符串，lastMatch
+- $' : 匹配子字符串之前的子字符串，leftContext
+- $` : 匹配子字符串之后的子字符串，rightContext
+- $n : 匹配第n个捕获分组
+- $nn: 匹配 01-99 分组
+若是第二个参数是函数,则会有3个参数，match，index（匹配在字符串中的位置），originalText(原始字符串)
+9. localeCompare()： 
+```
+    var stringValue = "yellow";
+    console.log(stringValue.localeCompare("brick"));// 1
+    console.log(stringValue.localeCompare("yellow"));// 0
+    console.log(stringValue.localeCompare("zoo"));// -1
+```
+10.fromCharCode: charCodeAt() 进行的相反的操作，
+```
+    console.log(String.fromCharCode(104,101,108));//hel
+```
+
+
+##### 5.7 单体内置对象
+Global，Math
+1. uri方法
+- encodeURI(),encodeURIComponent()可以对URI进行编码，encodeURI主要对整个URI，encodeURIComponent主要对uri中的某一段，比如 http://www.a.com/a b.html,中的a b.html,encodeURI本身不会对特殊字符进行编码，比如正斜杠，某号等。
+2.eval
+严格模式下，外部访问不了eval内定义的任何变量。
+3.ES5 禁止给undefined,NaN,Infinity负值，在非严格模式下，也会抛错。
+4.window： 浏览器的window对象，是作为扩展global对象来定义的，es也没有指出任何去直接访问global，
+```
+    var global = function(){
+        return this;
+    }();
+```
+
+在全局环境下，直接返回this，为global，在任何环境下都可行。
+
+##### 5.7.2 Math
+Math.min ,Math.max
+```
+    var max = Math.max;
+    console.log(max(1,2,3,4,5,6));
+    
+```
+- Math.floor ： 向下舍
+- Math.ceil : 向上舍
+- Math.round  : 四舍五入
+- Math.random : 获得一个 0-1之间的随机值

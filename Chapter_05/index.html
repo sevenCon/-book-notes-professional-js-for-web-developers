@@ -59,6 +59,12 @@
     console.log("Date toLocaleString() 的返回值 ",new Date().toLocaleString());
     console.log("Date valueOf 返回值 ", new Date().valueOf());
 
-</script>
+    // RegExp
+    var text = "This has been a short summer";
+    var pattern = /(..)or(.)/g;
+    if(pattern.test(text)){
+        console.log(RegExp.$1,RegExp.$2,RegExp.$3,RegExp.$4);
+    }
+</script>   
 </body>
 </html>
