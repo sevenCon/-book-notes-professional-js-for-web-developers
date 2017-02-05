@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chapter_07 闭包与变量</title>
+</head>
+<body>
+<script type="text/javascript">
+	function createFunction(){
+	    var result = new Array();
+	    for(var i = 0; i < 10; i++){
+	        result[i] = function(){
+	        	console.log(i);
+	            return i;
+	        }
+	    }   
+	    return result;
+	}
+	createFunction()[9](); // 10
+	
+</script>
+</body>
+</html>
