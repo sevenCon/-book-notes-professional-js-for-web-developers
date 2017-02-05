@@ -114,3 +114,162 @@ defineProperties
 
 
 ### 6.2.6寄生构造函数模式
+创建一个函数，返回新建的对象，函数的作用仅仅是包装对象
+```
+function Person(){
+    var o = new Object();
+    o.name = name;
+    o.age = age;
+    o.job = job;
+    o.sayName = function(){
+        console.log(this.name);
+    }
+    return o;
+}
+
+var person1 = new Object("quan", 19, "web engineer");
+```
+
+return返回这个对象，重写了this
+```
+function SpecialArray(){
+    var values = new Array();
+    values.push.apply(values, arguments);
+    values.toPipedString = function(){
+        return this.join("|");
+    }
+    return values;
+}
+var colors = new SpecialArray("red","blue","green");
+```
+
+因此，便是存在instanceOf 检测不到实例的构造函数的问题。因为返回的对象是匿名不可见的。
+
+##### 6.2.7 稳妥的构造函数方式
+```
+function Person(name, age, job){
+    var o = new Object();
+    var name = name;
+    var age = age;
+    var job = job;
+    o.sayName = function(){
+        console.log(name);
+    }
+    return o;
+}
+```
+
+如上，即是在以上的sayName的方法中，才能访问到这个对象的内部私有属性，以外，都不能访问。注意的是，有2个条件，不引用this，不用new进行构造。
+
+
+### 6.3 继承
+
+确定原型和实例之间的方法
+- instanceOf
+- isPrototypeOf
+
+##### 6.3.1 原型链继承中的引用问题
+```
+function SuperType(){
+    this.colors = ["red"，"blue","green"];
+}
+function SubType(){
+    
+}
+SubType.prototype = new SuperType();
+var instance1 = new SubType();
+instance1.push("Black");
+var instance2 = new SubType();
+console.log(instance2);//  ["red"，"blue","green","Black"]
+```
+
+因为继承重写了SubType的原型，而SuperType的实例属性colors变为原型属性，所以这个引用类型的变量为原型公用了。即是每一个SubType的实例都会公用这个数组。
+
+
+### 6.3.2借用构造函数
+所以由于上述的问题，有了call，apply方法改变this，去调用父方法的实现。而call,apply也仅仅是调用函数，而不会new，并执行初始化原型方法和属性
+```
+function SuperType(){
+    this.colors = ["red"，"blue","green"];
+}
+function SubType(){
+    SuperType.call(this);  
+}
+var instance1 = new SubType();
+instance1.push("Black");
+var instance2 = new SubType();
+console.log(instance2);//  ["red"，"blue","green"]
+```
+
+### 6.3.3 组合继承
+集合继承的方式，是用call 进行继承父方法的对象属性，重写子方法的原型继承，是一种比较常用的继承方法。
+```
+function SuperType(){
+    this.colors = ["red"，"blue","green"];
+}
+function SubType(){
+    SuperType.call(this);  
+}
+var instance1 = new SubType();
+instance1.push("Black");
+var instance2 = new SubType();
+console.log(instance2);//  ["red"，"blue","green"]
+```
+
+ES5中新增 Object.create(obj,properties): 规范了原型式的继承，在只传入第一个参数的情况下，只是进行对象的浅复制,在这种情况下，没有必要进行构造函数的定义和复制。
+```
+    var cp = {name:1}
+    var obj = Object.create(cp,{
+        value:{
+            value:12
+        }
+    });
+    console.log(obj.value); //12
+```
+
+
+##### 6.3.5 寄生式继承
+在上述的构造函数的原型继承中，有个问题，
+```
+function SuperType(){
+    this.colors = ["red"，"blue","green"];
+}
+function SubType(){
+    
+}
+SubType.prototype = new SuperType();
+var instance1 = new SubType();
+instance1.push("Black");
+var instance2 = new SubType();
+console.log(instance2);//  ["red"，"blue","green","Black"]
+```
+
+colors的属性会在SubType 的实例及其原型上存在，但是实例上的属性屏蔽了原型上的属性。但是调用寄生式的浅复制的方法获取原型的一个副本，再讲这个副本赋值给子方法的原型上，即可实现函数的服用。
+
+```
+function SuperType(){
+    this.colors = ["red"，"blue","green"];
+}
+function SubType(){
+    
+}
+SubType.prototype = Object.create(SuperType.prototype); // 浅复制父原型
+var instance1 = new SubType();
+instance1.push("Black");
+var instance2 = new SubType();
+console.log(instance2);//  ["red"，"blue","green","Black"]
+```
+
+这样colors属性只在子方法中存在，而原型就只是一个父原型的副本，但是也可拓展新属性和方法。
+
+### 小结
+- 工厂模式 简单的利用函数的方式创建对象，返回创建的函数
+- 构造函数模式 用new新建一个对象，属性之间不能复用
+- 原型模式 可以继承，复用
+
+继承的模式
+- 原型式的继承 : 继承的方法，没有公用属性 ，子原型中引用变量问题，多个子实例公用一个引用变量
+- 寄生式的继承 : 对象的浅复制，可以服用，公用一个引用类型变量
+- 寄生组合模式 ： 组合2种的优点
+
+
