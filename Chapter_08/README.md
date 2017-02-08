@@ -159,6 +159,69 @@ function getQueryStringArgs(){
 }
 ```
 
+##### 8.2.2 位置操作
+每次修改location的属性，hash除外，都会导致页面的重载,并且在浏览器的历史中新增一条历史记录，若要禁用这种方法，这用replace(url), 当前的历史记录，替换成新的url，不可以后退会原来的url
+``` 
+    
+    location.protocol = "https"    // https://www.baidu.com:80
+    location.hash = "#contents";  // https://www.baidu.com:80#contents
+    location.host = "www.baidu.com:80";
+    location.hostname = "www.baidu.com";
+    loaction.search = "?b=1";  // https://www.baidu.com:80#contents?b=1
+    location.pathname = "/search/";// https://www.baidu.com:80/search#contents?b=1
+
+```
+
+location.reload(); // 可能从缓存中重载
+location.reload(true);  //强制重服务器重载
+
+
+### 8.3 navigator对象
+
+onLine: 当前浏览器是否联网，不可行，不是即时同步机器的联网状态
+cookieEnabled:
+appName:
+platform: 平台
+userAgent: 浏览器的代理字符串
+vendor: 浏览器的品牌
+
+##### 8.3.1 检测插件
+一般用navigator.plugins数组参数，来检测浏览器是否安装了插件，
+plugins中的每个元素都有
+name:插件名
+description:插件的描述
+length:MiME类型的数量
+filename:插件的文件名
+
+```
+hasPlugin:function(name){
+    for(var i = 0 , length = navigator.plugins.length; i < length ; i++){
+        if(navigator.plugins[i].name.toLowerCase().indexOf(name) == -1){
+            return  true;
+        }
+    }
+    return false;
+}
+hasIEPlugin:function(name){
+    try{
+        new ActiveXObject(name);
+        return true;
+    }catch(ex){
+        return false;
+    }
+}
+```
+##### 8.3.2 注册处理程序
+
+
+### 8.4 screen 对象
+用来记录外部的显示器的信息，用法在检测和站点跟踪工具中常用，此外还有用于
+window.resize(screen.availWidth,screen.availHeight);
+但是，窗口调节可能被禁用
+
+### 8.5 history对象
+
+history,记录着页面的历史记录，上述的replace(url) 方法可能对history有影响之外
 
 此外还有 
 history.back();
@@ -166,6 +229,13 @@ history.forward();
 history.length==0 : 表示当前是首次打开页面
 
 
+### 小结
 
+- frame的运用，每个frame都产生一个window的构造函数，不同的frame的实例和构造函数，不用instanceOf 来检测
+- top指定为最顶层的frame，parent为上一级的frame
+- location可用来设置浏览器的浏览属性和导航信息
+- replace() 跳转到一个新的url，会替代history 上一个的history
+- navigator对象 也提供了浏览器的信息
+- hisotry 可以用来判断是否第一个打开浏览器,screen常用为站点分析
 
 

@@ -40,7 +40,24 @@
 			if(this.hasClass(selector,cName)){
 				document.querySelector(selector).className.replace(new RegExp("(\\s+)?"+cName+"(\\s+)?"," ").trim();
 			}
-		}
+		},
+		hasPlugin:function(name){
+			for(var i = 0 , length = navigator.plugins.length; i < length ; i++){
+				if(navigator.plugins[i].name.toLowerCase().indexOf(name) == -1){
+					return  true;
+				}
+			}
+			return false;
+		},
+		hasIEPlugin:function(name){
+			try{
+				new ActiveXObject(name);
+				return true;
+			}catch(ex){
+				return false;
+			}
+		},
+		
 	}
 </script>
 </body>
