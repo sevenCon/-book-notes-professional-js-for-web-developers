@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>BOM</title>
-</head>
-<body>
-<script type="text/javascript">
-	var COMMON = {
+/*
+ * author: quanlicong
+ * date: 2007-02-08
+ * desc: common lib for every date
+ */
+var COMMON = {
 		// 获取url的查询参数
 		getQueryString:function (){
 		    var qs = (location.search.length > 0 ? location.search.substring(1) : "");
@@ -42,6 +40,3 @@
 			}
 		}
 	}
-</script>
-</body>
-</html>

@@ -102,5 +102,70 @@ open的第三个参数，代表的窗口的特性，以“，”隔开 多个选
 有fullscreen,height,left,location, menubar,resizable,scrollbars,status,toolbar,top,width, [值为yes，no， 或者具体的数值]
 
 
+##### 8.1.6 间歇调用和超时调用
+
+setTimeout 和 setInterval，超时调用和间歇调用，第一个参数可以是一个字符串或者是一个函数，若是一个字符串，则会发送二次解析，效率降低，不建议用；第二个参数是毫秒数，表示间歇的时间或者超时的时间。而二者都会返回一个数值id，可以利用这个数值id进行清除这个调用。
+```
+    // 设置调用
+    var timeoutId = setTimeout(function(){
+        console.log("time out!");
+    },3000);
+    clearTimeout(timeoutId);
+```
+
+注意，超时调用都是在全局作用域下调用的。
+
+##### 8.1.7 系统对话框
+window下的对话框有，alert，confirm，prompt(),这些的对话框的样式，是由浏览器决定的，而不是由css，决定的。
+
+alert：提示对话框
+confirm： 确认对话框。可以根据用户点击的按钮，返回不同的bool值
+prompt: 输入对话框，输入值后点击确认可以返回输入的结果。
+
+### 8.2 location 对象
+window.location 和 document.location 上引用的同一个的对象
+window.location 上提供的属性，是对当前浏览器的一些状态的记录
+
+hash :  #contents    url后#后面的部分
+host :  www.baidu.com:80  域名和端口的部分
+hostname： www.baidu.com   域名
+href ： 当前url的链接，或者将要设置的url的链接
+pathname： /wileyCDA/  返回url中的文件夹名或者目录
+port： 当前的url的端口
+protocol： 协议名
+search：  ?a=javascript    get参数部分
+
+```
+// 获取url的查询参数
+function getQueryStringArgs(){
+    var qs = (location.search.length > 0 ? location.search.substring(1) : "");
+    var args = {};
+    items = qs.length ? qs.split("&"):[];
+    item = null,
+    name = null,
+    value = null,
+    i = 0,
+    length = items.length;
+    // 逐渐将每项添加到args对象中去
+    for(i = 0, i < length; i++){
+        item = item[i].split("=");
+        name = decodeURIComponent(item[0]);
+        vlaue = decodeURIComponent(item[1]);
+        if(name.length){
+            args[name] = value;
+        }
+    }
+    return args;
+}
+```
+
+
+此外还有 
+history.back();
+history.forward();
+history.length==0 : 表示当前是首次打开页面
+
+
+
 
 
