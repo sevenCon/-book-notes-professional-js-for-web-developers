@@ -83,4 +83,39 @@ document.URL: 网页的完整url
 document.referrer:  来源网页的url
 document.domain: cookie 在主域名和子域名之间的通信设置
 
-以上3个属性，只有domain可以设置
+以上3个属性，只有domain可以设置，并且，只能有紧绷性的domain，向松散型的domain上变。
+比如: m.taobao.com => taobao.com
+
+##### 查找元素
+ie8 及以下的版本的getElementById(id); 不区分大小写，比如 
+```
+<div id="myDiv"></div>
+var ele = document.getElementById("mydiv"); // ie8 及更低的版本中可以获取
+``` 
+
+此外还有
+```
+<input type="text" name="myElement" value="text" field>
+<div id="myElement"> A div </div>
+
+document.getElementById("myElement "); // 会返回input
+```
+
+HTMLCollection 还有个方法，叫nameedItem(),这个方法可以通过name属性获取特定的节点
+
+getElementsByTagName("*"):
+getElementByName("color"):
+
+##### 特殊集合
+document.anchors
+document.forms
+document.images
+document.links
+document.applets
+
+##### dom 一致性检测
+```
+var hasXmlDom = document.implementation.hasFeagure("XML","1.0");
+
+```
+hasFeagure 也有弊端，safari 2x 版本不精准
