@@ -15,7 +15,7 @@ NODE 的类型
 - Node.NOTATION_NODE(12)
 
 
-### 10.1 nodeName 和nodeValue 属性
+### 10.1.1 nodeName 和nodeValue 属性
 
 nodeName和nodeValue列出节点的具体信息，但是要通过nodeType判断一下
 ```
@@ -60,7 +60,7 @@ removeChild(childNode): 删除节点
 
 cloneNode(Bool) : 是否深度复制节点
 
-### Document 类型
+### 10.1.2 Document 类型
 
 ##### 文档的子节点
 Document的子节点可以是DocumentType，Element，ProcessInstructor,Comment. 还有2个内置的访问其子节点的快捷方式，第一个：documentElement,它始终指向document下的html节点，此外还可以通过，document.firstChild,或者document.childNodes[0]
@@ -119,3 +119,87 @@ var hasXmlDom = document.implementation.hasFeagure("XML","1.0");
 
 ```
 hasFeagure 也有弊端，safari 2x 版本不精准
+
+##### document.write()和document.writeln()方法的载入script标签的问题
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    document.write("<script src=\"file.js\""></script>"); // </script> 字符串的'<' 不加转义'\<', 会让浏览器认为这里是script的结束了，进而不执行下面的内容。
+</script>
+</body>
+</html>
+
+```
+
+
+### 10.1.3 Element 类型
+
+Element的节点
+nodeType: 1
+nodeName: 元素的标签
+nodeValue:  null
+parentNode: document 或 Element
+子节点可能是： Element，text，Comment，ProcessingInstruction，CDATASection 或EntityReference
+
+```
+if(node.tagName.toLowerCase() == "div"){
+    //some operation
+}
+```
+tagName 的属性都是大写的，并且在xml或者xhtml中表现的是代码的原值，移植性不是很好，所以建议都转为小写进行检测
+
+##### html
+所有的html的标签都是通过HTMLElement或者其继承的对象，进行实现的。以下的属性，可以直接修改，而不用利用其setAttribute()接口
+- id:  document.getElementById("mydiv").id ="2"
+- name: document.getElementById("mydiv").name ="2"
+- dir: document.getElementById("mydiv").dir ="rtl"
+- lang: document.getElementById("mydiv").lang ="en"
+- title: document.getElementById("mydiv").title ="2"
+- className: document.getElementById("mydiv").className ="2"
+
+属性操作方法
+- document.getElementById("mydiv").getAttribute("name"):
+- document.getElementById("mydiv").setAttribute("name","quan"):
+- document.getElementById("mydiv").removeAttribute("name"), ie6不支持这个属性
+
+> note: getAttribute方法，在ie8之前的，getAttribute("style")返回的是一个对象，getAttribute("onclick")返回的是一个函数,ie7以前的setAttribute,进行设置class，sytle，没有任何效果。
+
+##### attribute 属性
+Element类型是使用Attribute属性的唯一一个DOM节点类型。attribute中包括一个NamedNodeMap，是一个动态的集合。NamedNodeMap具有一下方法：
+- getNamedItem(name): 返回nodeName 等于name的属性
+- removeNameItem(name):移除name的属性的节点
+- setNameItem(node): 向列表中添加节点，以nodeName属性为索引
+- item(pos): 返回位于数字的pos位置处的节点
+attribute 属性中nodeName 则为特性的名称，nodeValue是特性的值
+
+遍历attributes的属性
+```
+function outputAttributes(element){
+    var pairs = new Array(),
+        attrName,
+        attrValue,
+        i,
+        len;
+    for(i = 0, len = element.attributes.length; i < len; i++){
+        attrName = element.attribute[i].nodeName;
+        attrValue = element.attributes[i].nodeValue;
+        // 对于每个属性是否已经设置了属性值，可以通过specified 的值进行检测，若是true，则是已经设置过的。
+        if(element.attributes[i].specified){
+            pairs.push(attrName + "=\"" + attrValue +"\"");
+        }
+    }
+    return pairs.join(" ");
+}
+```
+
+##### 创建元素
+```
+var div = document.createElement("div");
+```
+
+
