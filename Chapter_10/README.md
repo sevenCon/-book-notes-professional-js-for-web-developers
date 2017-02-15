@@ -219,8 +219,131 @@ var div = document.createElement("<div id=\"myNewDiv\" class=\"box\"></div>");
 >以上的所有问题都可以通过createElement的方法传入一个html的标签进行设置属性
 来解决
 
-##### 元素的子节点
+### 10.1.4 Text 类型
+
+nodeType ： 3
+nodeName："#text"
+nodeValue: 值为节点包含的文本
+parentNode: 是一个Element
+不支持没有节点
+
+可以通过修改nodeValue 或者data属性的访问Text节点的文本，
+- appendData(text) : 追加文本
+- deleteOffset(offset,count): 从offset下标开始删除count个字符
+- insetData(offset,text): 从offset中插入text
+- replaceData(offset,count,text): 用text替换下标为offset到offset+count的文本
+- splitText(offset):从offset的位置，分隔文本成2部分
+- substringData(offset,count): 提取下标从offset到offset+count的文本
+
+note: 一个标签添加多个文本节点，之间不会有空格
+
+##### 规范化文本节点
+normalize(): 可以将多个文本节点合并成一个文本节点，合并的值等同于所有文本的字符串链接起来的值。
+```
+var element  = document.createElement("a");
+element.appendChild(document.createTextNode("quan"));
+element.appendChild(document.createTextNode(" lincong"));
+element.normalize();
+```
+
+splitText(offset): 与normalize()的作用相反，
+```
+element.firstChild.splitText(5);
+```
+
+### 10.1.5 Comment 类型
+nodeType: 8
+nodeName: "#comment"
+nodeValue: 注释内容
+
+```
+document.createComment("a comment");
+```
+
+### 10.1.8 DocumentFragment 类型
+nodeType：11
+nodeName:"#document-fragment"
+
+```
+var fragment = document.createDocumentFragment();
+var ul = document.getElementById("muList");
+var li = null;
+for(var i = 0; i<3 ; i++){
+    li = document.createElement("li");
+    li.appendChild(document.createTextNode("a list "+ new Date().valueOf()));
+    fragment.appendChild(li);
+}
+ul.appendChild(fragment);
+```
+
+### 10.1.9 Attr 类型
+
+nodeType： 11
+Attr的标签有3个值，分别是name,value,specified,
+- name ： 是属性的名称
+- value: 属性的值
+- specified : 这个属性是指定还是默认
+
+```
+var attr = document.createAttribute("align");
+attr.value = "left";
+var ele = document.createElement("div");
+ele.setAttribute(attr);
+
+``` 
+
+# 10.2 Dom 操作技术
+###  10.2.1 动态脚本
+
+```
+function loadScriptString(code){
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    try{
+        script.appendChild(document.createTextNode(code));
+    }catch(e){
+        script.text = code;
+    }
+    document.body.appendChild(script);
+}
+```
+
+
+### 10.2.2 动态样式
+
+```
+function loadStyles(url){
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = url;
+    var head = document.getElementByTagsName("head")[0];
+    head.appendChild(link);
+}
+
+```
+
+IE的浏览器中，不允许访问style标签的子节点
+
+所以有了兼容性的写法
+```
+function loadStylesString(css){
+    var style = document.createElement("style");
+    style.type = "text/css";
+    try{
+        style.appendChild(document.createTextNode(css));
+    }catch(e){
+        style.stylesheet.cssText = css    
+    }
+    var head = docuement.getElementByTagName("head")[0];
+    head.appendChidl(sytle);
+}
+```
+
+### 10.2.4 操作表格
+ 使用NodeList,最好将NodeList.length ,进行暂存，然后在再遍历，否则容易造成五险循环。
 
 
 
 
+ 
