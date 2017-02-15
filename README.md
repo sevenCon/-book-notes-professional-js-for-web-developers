@@ -14,4 +14,13 @@
 > 面向对象的设计和继承,对象的创建的方法，工厂方法模式，构造函数模式等进行创建对象，对象的继承的工厂方法，原型方法，寄生方法，原型寄生组合方法的优缺点。
 
 ### Chapter 07
-> 函数表达式，函数声明，立即执行的好处，闭包，闭包的滥用可能会导致内存占用过度。
+>函数表达式，函数声明，立即执行的好处，闭包，闭包的滥用可能会导致内存占用过度。
+
+### Chapter 08
+> 其中包括window，location，navigatior，screen，和history对象
+
+### Chapter 09
+> 客户端检测，BOM浏览器特性，如何判断当前浏览器的版本和环境，当前的系统，移动设备信息。
+
+### Chapter 10
+> DOM 的类型，Node,Document,Element ,Text ，Comment,CDATASection， DocumentType，DocumentFragment，Attr类型

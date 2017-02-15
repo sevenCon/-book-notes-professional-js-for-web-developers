@@ -200,6 +200,27 @@ function outputAttributes(element){
 ##### 创建元素
 ```
 var div = document.createElement("div");
+div.className = "divclassName";
+div.name = "divname";
+div.innerHTML = "i am a text";
+document.body.appendChild(div);
 ```
+同时也可以
+```
+var div = document.createElement("<div id=\"myNewDiv\" class=\"box\"></div>");
+```
+
+在ie8 以下的浏览器中存在的问题
+- iframe 的name属性不能设置的问题
+- 不能通过reset()方法，重置表单的input表单值
+- 动态添加的reset的button不能重置表单值
+- 动态添加一批name相同的redio，之间毫无关系
+
+>以上的所有问题都可以通过createElement的方法传入一个html的标签进行设置属性
+来解决
+
+##### 元素的子节点
+
+
 
 
