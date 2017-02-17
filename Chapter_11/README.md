@@ -100,9 +100,77 @@ div.innerHTML = "_<script defer> alert('HI');</script>";
 ```
 
 一些不支持innterHTML的元素
-col,colgroup,frameset,head,html,style,table,tbody,thead,tfoot,tr , 在IE8 title元素也没有innerHTML 
+col,colgroup,frameset,head,html,style,table,tbody,thead,tfoot,tr , 在IE8 title元素也没有innerHTML
+
 ##### 11.3.6  outerHTML
-##### 11.3.6  innerHTML
-##### 11.3.6  innerHTML
+
+##### 11.3.6  insertAdjacentHTML()
+insertAdjacentHTML (): 插入的位置 和将要插入的文本
+插入的位置有4中可选参数：
+- beforebegin:
+- afterbegin:
+- beforeend:
+- afterend: 
+```
+// 在元素之前
+element.insertAdjacentHTML("beforebegin","<p> i am paragraph!</p>");
+// 插入第一个子元素之前
+element.insertAdjacentHTML("afterbegin","<p> i am paragraph!</p>");
+// 插入为最后一个子元素
+element.insertAdjacentHTML("beforeend","<p> i am paragraph!</p>");
+// 插入在元素之后
+element.insertAdjacentHTML("afterend","<p> i am paragraph!</p>");
+```
+##### 11.3.6  内存和管理问题
+
+操作innerHTML, outerHTML,insertAdjacentHTML(),等方法，每次的操作会创建一个解析器，相比js来说createElement() 会快许多的。但是循环的滥用会导致内存 ，性能损耗。
+
+##### 11.3.7 scrollIntoView 方法
+让浏览器滚动到指定的位置，传入true，或者不传，则会让元素和窗口平齐，传入false则会让调用元素全部出现在视口中。
+
+```
+document.forms[0].scrollIntoView();
+```
+
+### 11.4 专有拓展
+##### 文档模式
+- IE 5 : 默认混杂模式 ，ie8及以上的功能不可用
+- IE7 : 用IE7 标准模式渲染网页，IE8功能不可用
+- IE8 : IE8标准模式渲染网页，可以使用Selector API, 更多CSS2,部分CSS3功能.
+- IE 9 : 可以使用ES5 ,CSS3
+
+强制浏览器以某种模式渲染，可以使用X-UA-Compatible,或通过
+```
+// IEVersion = Edge || EmulateIE{7,8,9} || {5,7,8,9} 等值
+<meta http-equiv="X-UA-Compatible" content="IE=IEVersion"/>
+```
+Edge 则使用该浏览器的默认模式渲染
+document.documentMode 返回文档模式的版本号，
+
+##### 11.4.2 children 属性
+IE9 浏览器在理解空白文本节点的问题上，以其他浏览器存在差异，IE9只返回元素节点，IE8及以前的的浏览器会返回注释节点。此外和childNodes 并无不同。
+
+document.documentElemetn.contains(document.body); // true
+
+在DOM3级也能确定元素间的关系
+1 = 无关
+2 = 之前
+4 = 之后
+8 = 包含
+16 = 被包含
+
+##### 11.4.4 插入文本
+
+innerText : ff下为textContent ，没有innerText,
+
+ele.innerText = div.innerText; 可以转为纯文本字符串
+
+outerText : 读属性时，和innerText一样，在写属性时，则包括会替换父元素
+
+##### 11.4.5 滚动
+对于srollIntoViewIfNeeded : 如果元素在视口不可见，才滚动元素
+scrollByLines(lineCoutn): 将元素滚动制定的高度，
+scrollbyPages(pageCount): 将元素的内容滚动制定的也没高度，具体的高度由元素的高度决定
 
 
+ 
