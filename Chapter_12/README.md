@@ -175,3 +175,14 @@ var docWidth = Math.max(document.documentElement.clientWidth,document.documentEl
 对于在IE的混杂模式下，需要用document.body代替document.documentElement 
 
 4. 确定元素的大小
+IE8 及更早的版本中，认为文档的左上角坐标是（2,2），IE9开始则是（0,0）开始
+各个浏览器提供了一个getBoundingClientRect()的方法，返回个一个矩形对象，包括left,top，right和bottom
+
+
+### 12.3 遍历
+
+NodeIterator 和TreeWalker 
+
+### NodeIterator
+
+### TreeWalker
