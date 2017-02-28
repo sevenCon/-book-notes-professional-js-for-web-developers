@@ -184,5 +184,47 @@ IE8 及更早的版本中，认为文档的左上角坐标是（2,2），IE9开�
 NodeIterator 和TreeWalker 
 
 ### NodeIterator
+```
+var filter = {
+    acceptNode:function(node){
+        return node.tagName.toLowerCase()=='p' ? NodeFilter.FILTER_ACCEPT :NodeFilter.FILTER_SKIP;
+    }
+}
+var iterator = document.createNodeIterator(root, NodeFilter.SHOW_ELEMENT, filter, false);
+
+第三个参数也可以是与acceptNode(),方法类似 
+var filter = function(node){
+    return node.tagName.toLowerCase()=='p'?NodeFilter.FILTER_ACCEPT:
+            NodeFilter.Filter_SKIP;
+}
+
+```
+NodeIterator 主要有两个参数，nextNode()和previousNode(),因此深度优先的遍历过程中，nextNode() 用于向前一步，previousNode()用于向后一步，
 
 ### TreeWalker
+是NodeIterator的更高级的版本，除了nextNode() 和previousNode()之外还有，
+- parentNode() ： 当前阶段的父节点
+- firstChild() ： 第一个子节点
+- lastChild()： 最后一个子节点
+- nextSibling() ： 下一个同辈节点
+- previousSibling() : 遍历到当前节点的上一个节点
+
+```
+//与NodeIterator 相似，
+var div = document.getElementById('div1');
+var filte = function(node){
+    return node.tagName.toLowerCase()=='li'?
+            NodeFilter.FILTER_ACCEPT:NodeFilter.Filter_SKIP;
+}
+var walker = document.createTreeWalker(div,NodeFilter.SHOW_ELEMENT,filter,false);
+var node = iterator.nextNode();
+while(node != null){
+    alert(node.tagName); 
+    node = iterator.nextNode();
+}
+```
+
+跳过节点的参数有 NodeFilter.Filter_SKIP 和 NodeFilter.Filter_REJECT ，skip在TreeWalker的情况下会跳过当前的节点，进入子节点，而reject则是跳过相应的节点和子节点
+
+
+###　12.4 范围
